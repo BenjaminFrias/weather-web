@@ -1,0 +1,150 @@
+/* GENERAL */
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+}
+
+/* CONTAINER */
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	gap: 200px;
+	width: 100vw;
+	height: 100vh;
+	font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+/* CURRENT WEATHER */
+
+.current-weather {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	width: 40%;
+	height: 100%;
+	border-radius: 0px 240px 240px 0px;
+	background: red;
+}
+
+.current-weather input {
+	background: none;
+	font-size: clamp(1rem, 2vw + 1rem, 3rem);
+	font-weight: 600;
+	text-decoration: 5px underline;
+	text-align: center;
+	width: 100%;
+	outline: 0px;
+	border: none;
+}
+
+.current-weather #current-temperature {
+	font-size: clamp(1.5rem, 7vw + 6rem, 12rem);
+	font-weight: 600;
+	line-height: 150px;
+}
+
+.current-weather p#weather-type {
+	font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+	font-weight: 600;
+}
+
+.current-weather #current-time {
+	display: flex;
+	gap: 15px;
+	font-weight: 500;
+}
+
+/* FORECASTS */
+
+.forecasts-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: start;
+	width: 50%;
+	padding-right: 100px;
+}
+
+.hourly-forecast,
+.five-days-forecast-container {
+	width: 100%;
+	font-weight: 600;
+}
+/* HOURLY WEATHER */
+.hourly-forecast ul {
+	display: flex;
+	gap: 15px;
+}
+
+.hourly-forecast ul li {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background: rgb(141, 189, 190);
+	flex: 1;
+	height: 100px;
+	padding: 5px 0px;
+	border-radius: 10px;
+}
+
+.hour-item p {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+/* 5-DAY WEATHER */
+
+.five-days-forecast-container ul {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	gap: 10px;
+}
+
+li.day-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+	border-radius: 10px;
+	padding: 5px 15px;
+	background: violet;
+}
+
+li.day-item p:nth-of-type(1) {
+	width: 200px;
+}
+
+li.day-item p:nth-of-type(3),
+li.day-item p:nth-of-type(1) {
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.day-item:nth-of-type(2) {
+	opacity: 0.9;
+}
+.day-item:nth-of-type(3) {
+	opacity: 0.8;
+}
+.day-item:nth-of-type(4) {
+	opacity: 0.7;
+}
+.day-item:nth-of-type(5) {
+	opacity: 0.6;
+}
