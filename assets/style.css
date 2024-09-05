@@ -15,6 +15,12 @@ ul {
 	margin-top: 20px;
 }
 
+button {
+	border: none;
+	outline: 0px;
+	background: none;
+}
+
 /* CONTAINER */
 
 .container {
@@ -40,15 +46,12 @@ ul {
 	background: red;
 }
 
-.current-weather input {
-	background: none;
+.current-weather button {
 	font-size: clamp(1rem, 2vw + 1rem, 3rem);
 	font-weight: 600;
 	text-decoration: 5px underline;
 	text-align: center;
 	width: 100%;
-	outline: 0px;
-	border: none;
 }
 
 .current-weather #current-temperature {
@@ -147,4 +150,90 @@ li.day-item p:nth-of-type(1) {
 }
 .day-item:nth-of-type(5) {
 	opacity: 0.6;
+}
+
+/* POP UP SEARCH */
+
+.pop-up-search {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(125, 128, 153, 0.4);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(9px);
+	-webkit-backdrop-filter: blur(9px);
+	position: absolute;
+	z-index: 999;
+}
+
+.pop-up-search.hidden {
+	display: none;
+}
+
+.pop-up-search #city-input {
+	width: 40%;
+	height: 60px;
+	padding: 0px 15px;
+	background: rgba(255, 255, 255, 0.8);
+	font-family: "Inter", Arial, Helvetica, sans-serif;
+	font-weight: 600;
+	font-size: clamp(1.2rem, 2vw + 0.5rem, 1.7rem);
+	color: #222222;
+	border-radius: 5px;
+	border: none;
+	outline: 0px;
+}
+
+#close-pop-up {
+	position: absolute;
+	z-index: 999;
+	top: 20px;
+	right: 20px;
+	background: none;
+	outline: 0px;
+	border: none;
+	color: white;
+	transition: scale 200ms ease;
+}
+
+#close-pop-up:hover {
+	transition: scale 200ms ease;
+	scale: 1.2;
+}
+.city-results {
+	margin-top: 20px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.8);
+	width: 40%;
+}
+
+.city-results ul {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0;
+}
+
+.city-results ul li {
+	font-size: 1.2rem;
+	border-bottom: 1px solid black;
+	padding: 10px;
+	transition: all 200ms ease;
+}
+
+.city-results ul li:hover {
+	font-size: 1.5rem;
+	transition: all 200ms ease;
+	background: lightgray;
+}
+
+.city-results ul li:first-of-type {
+	border-radius: 10px 10px 0px 0px;
+}
+
+.city-results ul li:last-of-type {
+	border: none;
+	border-radius: 0px 0px 10px 10px;
 }
