@@ -18,11 +18,11 @@
 		/>
 
 		<!-- Scripts -->
-		<script src="assets/main.js" defer></script>
+		<script src="assets/main.js" type="module" defer></script>
 	</head>
 	<body>
 		<div class="container">
-			<div class="pop-up-search">
+			<div class="pop-up-search hidden">
 				<input
 					id="city-input"
 					type="text"
@@ -32,14 +32,8 @@
 					autocorrect="off"
 					autocapitalize="off"
 				/>
-				<div class="city-results">
-					<ul>
-						<li>
-							<button type="button">London, new hamsfh</button>
-						</li>
-						<li><button type="button">London, englah</button></li>
-						<li><button type="button">London, venez</button></li>
-					</ul>
+				<div class="city-suggestions">
+					<ul></ul>
 				</div>
 				<button type="button" id="close-pop-up">
 					<?xml version="1.0" ?><svg
@@ -62,39 +56,16 @@
 
 			<div class="current-weather">
 				<button type="button" id="pop-up-search-btn">London</button>
-				<h1 id="current-temperature">18°</h1>
-				<p id="weather-type">Sunny</p>
+				<h1 id="current-temperature">-°</h1>
+				<p id="weather-type"></p>
 				<div id="current-time">
-					<p>11 PM</p>
-					<p>|</p>
-					<p>Sunday, 26 Dec</p>
+					<p class="time-and-date"></p>
 				</div>
 			</div>
 			<div class="forecasts-container">
 				<div class="hourly-forecast">
 					<h2>Today's forecast</h2>
-					<ul class="hour-list">
-						<li class="hour-item">
-							<p>1 PM</p>
-							<div class="weather-icon"></div>
-						</li>
-						<li class="hour-item">
-							<p>1 PM</p>
-							<div class="weather-icon"></div>
-						</li>
-						<li class="hour-item">
-							<p>1 PM</p>
-							<div class="weather-icon"></div>
-						</li>
-						<li class="hour-item">
-							<p>1 PM</p>
-							<div class="weather-icon"></div>
-						</li>
-						<li class="hour-item">
-							<p>1 PM</p>
-							<div class="weather-icon"></div>
-						</li>
-					</ul>
+					<ul class="hour-list"></ul>
 				</div>
 				<div class="five-days-forecast-container">
 					<h2>5-Day forecast</h2>

@@ -52,10 +52,17 @@ button {
 	text-decoration: 5px underline;
 	text-align: center;
 	width: 100%;
+	transition: all 200ms ease;
+	cursor: pointer;
+}
+
+.current-weather button:hover {
+	transition: all 200ms ease;
+	scale: 1.05;
 }
 
 .current-weather #current-temperature {
-	font-size: clamp(1.5rem, 7vw + 6rem, 12rem);
+	font-size: clamp(1.5rem, 7vw + 6rem, 9rem);
 	font-weight: 600;
 	line-height: 150px;
 }
@@ -66,8 +73,6 @@ button {
 }
 
 .current-weather #current-time {
-	display: flex;
-	gap: 15px;
 	font-weight: 500;
 }
 
@@ -108,6 +113,23 @@ button {
 .hour-item p {
 	font-size: 1.2rem;
 	font-weight: 600;
+}
+
+.hour-item.message {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2rem;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.hour-item div {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 5-DAY WEATHER */
@@ -203,37 +225,39 @@ li.day-item p:nth-of-type(1) {
 	transition: scale 200ms ease;
 	scale: 1.2;
 }
-.city-results {
+.city-suggestions {
 	margin-top: 20px;
 	border-radius: 10px;
 	background: rgba(255, 255, 255, 0.8);
 	width: 40%;
+	overflow: hidden;
 }
 
-.city-results ul {
+.city-suggestions ul {
 	display: flex;
 	flex-direction: column;
 	margin-top: 0;
 }
 
-.city-results ul li {
+.city-suggestions ul li {
 	font-size: 1.2rem;
 	border-bottom: 1px solid black;
 	padding: 10px;
 	transition: all 200ms ease;
+	cursor: pointer;
 }
 
-.city-results ul li:hover {
+.city-suggestions ul li:hover {
 	font-size: 1.5rem;
 	transition: all 200ms ease;
 	background: lightgray;
 }
 
-.city-results ul li:first-of-type {
+.city-suggestions ul li:first-of-type {
 	border-radius: 10px 10px 0px 0px;
 }
 
-.city-results ul li:last-of-type {
+.city-suggestions ul li:last-of-type {
 	border: none;
 	border-radius: 0px 0px 10px 10px;
 }

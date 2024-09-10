@@ -22,6 +22,7 @@ export async function getHourlyForecast(city) {
 
 			if (forecastHour > currentHour && forecastLength < 5) {
 				const forecastIcon = forecast.condition.icon;
+				const altIconInfo = forecast.condition.text;
 
 				// Formatted hour to 12 hours format
 				const period = forecastHour >= 12 ? "PM" : "AM";
@@ -30,6 +31,7 @@ export async function getHourlyForecast(city) {
 				nextFiveHoursForecast[forecastLength] = [
 					formattedHour,
 					forecastIcon,
+					altIconInfo,
 				];
 			}
 		});
