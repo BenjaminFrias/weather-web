@@ -35,7 +35,7 @@ export async function getHourlyForecast(city) {
 		});
 		// Formmated hour
 
-		return [nextFiveHoursForecast];
+		return nextFiveHoursForecast;
 	} catch (error) {
 		console.error("Error:", error);
 		throw error; // Re-throw the error for handling in main.js
