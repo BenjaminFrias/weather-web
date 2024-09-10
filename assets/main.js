@@ -1,18 +1,19 @@
 import { getCurrentWeatherData } from "./getCurrentWeather.js";
+import { getCurrentTimeDate } from "./getCurrentTimeDate.js";
+import { getHourlyForecast } from "./getHourlyForecast.js";
 
 const closePopUp = document.querySelector("#close-pop-up");
 const popUp = document.querySelector(".pop-up-search");
 const currentWeatherContainer = document.querySelector(".current-weather");
 const currentTemperature = document.querySelector("#current-temperature");
 const currentWeatherDescription = document.querySelector("#weather-type");
-const currentTime = document.querySelector("#current-time .time");
-const currentDate = document.querySelector("#current-time .date");
+const currentTimeDate = document.querySelector("#current-time");
 const searchCityBtn = document.querySelector("#pop-up-search-btn");
 const citiesSuggestionList = document.querySelector(".city-suggestions ul");
 const cityInput = document.querySelector("#city-input");
+const hourlyForecastList = document.querySelector(".hour-list");
 
 let currentGlobalCity = "London";
-
 // Search and show cities
 export const apiKey = "323d066f1e3a4c378e3154049240509";
 
@@ -33,10 +34,12 @@ cityInput.addEventListener("input", async (event) => {
 
 					listItem.addEventListener("click", () => {
 						currentGlobalCity = citySuggestion.name;
+						searchCityBtn.textContent = currentGlobalCity;
+
 						popUp.classList.add("hidden");
 						cityInput.value = "";
 
-						showCurrentWeather();
+						updateWeather();
 					});
 
 					citiesSuggestionList.appendChild(listItem);
@@ -51,19 +54,83 @@ cityInput.addEventListener("input", async (event) => {
 
 // Show current weather
 
-async function showCurrentWeather() {
+async function updateWeather() {
 	try {
-		const currentWeather = await getCurrentWeatherData(currentGlobalCity);
-		const [temperature, weatherDescription] = currentWeather;
-
-		currentTemperature.textContent = `${temperature}°`;
-		currentWeatherDescription.textContent = weatherDescription;
+		await updateCurrentWeather(currentGlobalCity);
+		await updateHourlyForecast(currentGlobalCity);
 	} catch (error) {
 		console.error("Error fetching weather data:", error);
 	}
 }
 
-showCurrentWeather();
+updateWeather();
+
+// Show hourly forecast
+
+async function updateHourlyForecast(city) {
+	try {
+		// Clean current hourly forecast list
+		hourlyForecastList.innerHTML = "";
+
+		const hourlyForecastsData = await getHourlyForecast(city);
+
+		// If there aren't more forecast show message
+		if (hourlyForecastsData.length == 0) {
+			const ListItem = document.createElement("li");
+			ListItem.classList.add("hour-item");
+			ListItem.classList.add("message");
+			ListItem.textContent = "There aren't more forecast for this day.";
+			hourlyForecastList.appendChild(ListItem);
+		}
+
+		// Set hourly forecast hours and icon
+		for (let forecast in hourlyForecastsData) {
+			const hourForecast = hourlyForecastsData[forecast][0];
+			const iconForecast = hourlyForecastsData[forecast][1];
+
+			// Create hour and icon div elements
+			const paragraphItem = document.createElement("p");
+			const iconDiv = document.createElement("div");
+			const iconImgElem = document.createElement("img");
+			iconDiv.appendChild(iconImgElem);
+
+			iconImgElem.src = `https:${iconForecast}`;
+			iconImgElem.alt = hourlyForecastsData[forecast][2];
+
+			paragraphItem.textContent = hourForecast;
+
+			// Create hour forecast list item and append elements
+			const hourListItem = document.createElement("li");
+			hourListItem.classList.add("hour-item");
+
+			hourListItem.appendChild(paragraphItem);
+			hourListItem.appendChild(iconDiv);
+
+			// Add list item to hourly Forecast List
+			hourlyForecastList.appendChild(hourListItem);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function updateCurrentWeather(city) {
+	try {
+		const [temperature, weatherDescription] = await getCurrentWeatherData(
+			city
+		);
+
+		currentTemperature.textContent = `${temperature}°`;
+		currentWeatherDescription.textContent = weatherDescription;
+
+		searchCityBtn.textContent = city;
+
+		// Show date and time
+		currentTimeDate.textContent = await getCurrentTimeDate(city);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 // Close pop up
 closePopUp.addEventListener("click", () => {
