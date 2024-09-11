@@ -43,7 +43,7 @@ button {
 	width: 40%;
 	height: 100%;
 	border-radius: 0px 240px 240px 0px;
-	background: red;
+	background: var(--dark-bg-color);
 }
 
 .current-weather button {
@@ -93,7 +93,9 @@ button {
 	width: 100%;
 	font-weight: 600;
 }
+
 /* HOURLY WEATHER */
+
 .hourly-forecast ul {
 	display: flex;
 	gap: 15px;
@@ -104,7 +106,6 @@ button {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	background: rgb(141, 189, 190);
 	flex: 1;
 	height: 100px;
 	padding: 5px 0px;
@@ -149,7 +150,6 @@ li.day-item {
 	height: 50px;
 	border-radius: 10px;
 	padding: 5px 15px;
-	background: violet;
 }
 
 li.day-item p {
@@ -166,6 +166,7 @@ li.day-item p:nth-of-type(1) {
 }
 
 /* make the opacity cascade effect */
+
 .day-item:nth-of-type(2) {
 	opacity: 0.9;
 }
@@ -265,4 +266,24 @@ li.day-item p:nth-of-type(1) {
 .city-suggestions ul li:last-of-type {
 	border: none;
 	border-radius: 0px 0px 10px 10px;
+}
+
+/* COLORS */
+
+.current-weather > * {
+	color: var(--light-font-color);
+}
+
+.container {
+	background: var(--light-bg-color);
+}
+
+h2,
+p {
+	color: var(--dark-font-color);
+}
+
+.hour-item,
+li.day-item {
+	background: var(--forecasts-items-color);
 }
