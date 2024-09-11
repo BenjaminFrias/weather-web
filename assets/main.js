@@ -1,6 +1,7 @@
 import { getCurrentWeatherData } from "./getCurrentWeather.js";
 import { getCurrentTimeDate } from "./getCurrentTimeDate.js";
 import { getHourlyForecast } from "./getHourlyForecast.js";
+import { getNextFiveDaysForecast } from "./getNextFiveDaysForecast.js";
 
 const closePopUp = document.querySelector("#close-pop-up");
 const popUp = document.querySelector(".pop-up-search");
@@ -12,6 +13,7 @@ const searchCityBtn = document.querySelector("#pop-up-search-btn");
 const citiesSuggestionList = document.querySelector(".city-suggestions ul");
 const cityInput = document.querySelector("#city-input");
 const hourlyForecastList = document.querySelector(".hour-list");
+const nextFiveDaysList = document.querySelector(".five-days-list");
 
 let currentGlobalCity = "London";
 // Search and show cities
@@ -58,6 +60,7 @@ async function updateWeather() {
 	try {
 		await updateCurrentWeather(currentGlobalCity);
 		await updateHourlyForecast(currentGlobalCity);
+		await updateNextFiveDaysForecast(currentGlobalCity);
 	} catch (error) {
 		console.error("Error fetching weather data:", error);
 	}
@@ -127,6 +130,50 @@ async function updateCurrentWeather(city) {
 
 		// Show date and time
 		currentTimeDate.textContent = await getCurrentTimeDate(city);
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function updateNextFiveDaysForecast(city) {
+	nextFiveDaysList.textContent = "";
+
+	try {
+		const nextFiveDaysData = await getNextFiveDaysForecast(city);
+
+		for (let day in nextFiveDaysData) {
+			const dayItem = document.createElement("li");
+			dayItem.classList.add("day-item");
+
+			// Create day name
+			const dayName = document.createElement("p");
+			dayName.textContent = nextFiveDaysData[day][0];
+
+			// Create the min max element
+			const minMax = document.createElement("p");
+
+			const minSpan = document.createElement("span");
+			minSpan.textContent = `${nextFiveDaysData[day][1]}°`;
+
+			const maxSpan = document.createElement("span");
+			maxSpan.textContent = `${nextFiveDaysData[day][2]}°`;
+
+			// Append the every element in the minmax p element
+			minMax.appendChild(document.createTextNode("Min: "));
+			minMax.appendChild(minSpan);
+			minMax.appendChild(document.createTextNode(" | "));
+			minMax.appendChild(document.createTextNode("Max: "));
+			minMax.appendChild(maxSpan);
+
+			// Append the name and the minmax to list item
+			dayItem.appendChild(dayName);
+			dayItem.appendChild(minMax);
+
+			// Append the day item to the list
+			nextFiveDaysList.appendChild(dayItem);
+		}
+
+		// Create list item
 	} catch (error) {
 		console.log(error);
 	}
