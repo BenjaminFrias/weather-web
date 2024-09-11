@@ -1,0 +1,33 @@
+/* COLORS PALETTE */
+
+:root {
+	--light-bg-color: #e9e9e9;
+	--dark-bg-color: #414141;
+	--forecasts-items-color: #68686880;
+	--light-font-color: #e9e9e9;
+	--dark-font-color: #252525;
+}
+
+:root.rainy {
+	--light-bg-color: #d8daed;
+	--dark-bg-color: #3a407a;
+	--forecasts-items-color: #a1a8ed;
+	--light-font-color: #d8daed;
+	--dark-font-color: #3a407a;
+}
+
+:root.cloudy {
+	--light-bg-color: #cfcdeb;
+	--dark-bg-color: #312b3b;
+	--forecasts-items-color: #62607280;
+	--light-font-color: #cbc9eb;
+	--dark-font-color: #403158;
+}
+
+:root.sunny {
+	--light-bg-color: #fff3d8;
+	--dark-bg-color: #ffb649;
+	--forecasts-items-color: #ffde9d;
+	--light-font-color: #fffbd8;
+	--dark-font-color: #755123;
+}
