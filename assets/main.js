@@ -71,6 +71,21 @@ async function updateWeather() {
 }
 
 updateWeather();
+setInterval(updateWeather, 3600000);
+
+async function updateTime() {
+	try {
+		const time = await getCurrentTimeDate(currentGlobalCity);
+
+		currentTimeDate.textContent = time;
+
+		console.log("ITS WORKING", time);
+	} catch (error) {
+		console.error("Error fetching data:", error);
+	}
+}
+
+setInterval(updateTime, 60000);
 
 // Show hourly forecast
 
