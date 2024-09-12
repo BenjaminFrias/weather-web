@@ -43,7 +43,6 @@ button {
 	width: 40%;
 	height: 100%;
 	border-radius: 0px 240px 240px 0px;
-	background: var(--dark-bg-color);
 }
 
 .current-weather button {
@@ -270,20 +269,29 @@ li.day-item p:nth-of-type(1) {
 
 /* COLORS */
 
+.current-weather {
+	background: var(--dark-bg-color);
+	transition: background-color 2s ease;
+}
+
 .current-weather > * {
 	color: var(--light-font-color);
+	transition: color 2s ease;
 }
 
 .container {
 	background: var(--light-bg-color);
+	transition: background-color 2s ease;
 }
 
 h2,
 p {
 	color: var(--dark-font-color);
+	transition: color 2s ease;
 }
 
 .hour-item,
 li.day-item {
 	background: var(--forecasts-items-color);
+	transition: background-color 2s ease;
 }

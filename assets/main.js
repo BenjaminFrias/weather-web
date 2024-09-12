@@ -2,7 +2,9 @@ import { getCurrentWeatherData } from "./getCurrentWeather.js";
 import { getCurrentTimeDate } from "./getCurrentTimeDate.js";
 import { getHourlyForecast } from "./getHourlyForecast.js";
 import { getNextFiveDaysForecast } from "./getNextFiveDaysForecast.js";
+import { getTypeOfWeatherCode } from "./getTypeOfWeather.js";
 
+const rootElement = document.documentElement;
 const closePopUp = document.querySelector("#close-pop-up");
 const popUp = document.querySelector(".pop-up-search");
 const currentWeatherContainer = document.querySelector(".current-weather");
@@ -16,8 +18,9 @@ const hourlyForecastList = document.querySelector(".hour-list");
 const nextFiveDaysList = document.querySelector(".five-days-list");
 
 let currentGlobalCity = "London";
-// Search and show cities
 export const apiKey = "323d066f1e3a4c378e3154049240509";
+
+// Search and show cities
 
 cityInput.addEventListener("input", async (event) => {
 	let city = event.target.value;
@@ -61,6 +64,8 @@ async function updateWeather() {
 		await updateCurrentWeather(currentGlobalCity);
 		await updateHourlyForecast(currentGlobalCity);
 		await updateNextFiveDaysForecast(currentGlobalCity);
+
+		toggleColors();
 	} catch (error) {
 		console.error("Error fetching weather data:", error);
 	}
@@ -176,6 +181,31 @@ async function updateNextFiveDaysForecast(city) {
 		// Create list item
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+// Toggle colors
+
+async function toggleColors() {
+	const weatherTypeCode = await getTypeOfWeatherCode(currentGlobalCity);
+
+	const rainyConditions = [
+		1063, 1066, 1069, 1072, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189,
+		1192, 1195, 1198, 1201, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225,
+		1237, 1240, 1243, 1246, 1249, 1252, 1255, 1258, 1261, 1264, 1273, 1276,
+		1279, 1282,
+	];
+	const sunnyConditions = [1000];
+	const cloudyConditions = [1003, 1006, 1009, 1135, 1147];
+
+	if (rainyConditions.includes(weatherTypeCode)) {
+		rootElement.className = "rainy";
+	} else if (sunnyConditions.includes(weatherTypeCode)) {
+		rootElement.className = "sunny";
+	} else if (cloudyConditions.includes(weatherTypeCode)) {
+		rootElement.className = "cloudy";
+	} else {
+		rootElement.className = "";
 	}
 }
 

@@ -18,10 +18,10 @@
 
 :root.cloudy {
 	--light-bg-color: #cfcdeb;
-	--dark-bg-color: #312b3b;
+	--dark-bg-color: #514d57;
 	--forecasts-items-color: #62607280;
 	--light-font-color: #cbc9eb;
-	--dark-font-color: #403158;
+	--dark-font-color: #403d4e;
 }
 
 :root.sunny {
