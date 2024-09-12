@@ -12,7 +12,6 @@ body {
 :root .sun {
 	width: 0px;
 	height: 0px;
-	left: 1;
 	top: -50px;
 	transition: all 10s ease;
 }
