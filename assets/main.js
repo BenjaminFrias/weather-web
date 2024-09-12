@@ -62,10 +62,9 @@ cityInput.addEventListener("input", async (event) => {
 async function updateWeather() {
 	try {
 		await updateCurrentWeather(currentGlobalCity);
+		toggleColors();
 		await updateHourlyForecast(currentGlobalCity);
 		await updateNextFiveDaysForecast(currentGlobalCity);
-
-		toggleColors();
 	} catch (error) {
 		console.error("Error fetching weather data:", error);
 	}
