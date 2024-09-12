@@ -78,8 +78,6 @@ async function updateTime() {
 		const time = await getCurrentTimeDate(currentGlobalCity);
 
 		currentTimeDate.textContent = time;
-
-		console.log("ITS WORKING", time);
 	} catch (error) {
 		console.error("Error fetching data:", error);
 	}
