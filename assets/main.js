@@ -214,6 +214,14 @@ closePopUp.addEventListener("click", () => {
 	cityInput.value = "";
 });
 
+// Close pop up with escape key
+document.addEventListener("keydown", function (event) {
+	if (event.key === "Escape") {
+		popUp.classList.add("hidden");
+		cityInput.value = "";
+	}
+});
+
 // Show search input pop up
 searchCityBtn.addEventListener("click", () => {
 	citiesSuggestionList.innerHTML = "";
