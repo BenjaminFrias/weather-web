@@ -17,7 +17,15 @@ const cityInput = document.querySelector("#city-input");
 const hourlyForecastList = document.querySelector(".hour-list");
 const nextFiveDaysList = document.querySelector(".five-days-list");
 
-let currentGlobalCity = "London";
+let currentGlobalCity;
+
+if (localStorage.getItem("currentCity")) {
+	currentGlobalCity = localStorage.getItem("currentCity");
+} else {
+	localStorage.setItem("currentCity", "london");
+	currentGlobalCity = "London";
+}
+
 export const apiKey = "323d066f1e3a4c378e3154049240509";
 
 // Search and show cities
@@ -38,7 +46,7 @@ cityInput.addEventListener("input", async (event) => {
 					listItem.textContent = `${citySuggestion.name}, ${citySuggestion.country}`;
 
 					listItem.addEventListener("click", () => {
-						currentGlobalCity = citySuggestion.name;
+						saveCurrentGlobalCity(citySuggestion.name);
 						searchCityBtn.textContent = currentGlobalCity;
 
 						popUp.classList.add("hidden");
@@ -56,6 +64,11 @@ cityInput.addEventListener("input", async (event) => {
 			});
 	}
 });
+
+function saveCurrentGlobalCity(city) {
+	localStorage.setItem("currentCity", city);
+	currentGlobalCity = city;
+}
 
 // Show current weather
 
